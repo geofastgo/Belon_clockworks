@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belon — Independent Horology</title>
+    <meta name="description" content="Belon. A strictly limited series of 50 hand-finished watches. Defined by independence, resilience, and horizontal excellence.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            light: '#dfd5a5',
+                            DEFAULT: '#c5b358', // Champagne / Muted gold
+                            dark: '#9d8a35',
+                        },
+                        charcoal: {
+                            light: '#2a2a2a',
+                            DEFAULT: '#121212',
+                            dark: '#0a0a0a',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Custom Styles for Luxury Feel & Fine-tuning -->
+    <style>
+        body {
+            background-color: #0b0b0b;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+        /* Custom Golden Glow/Accents */
+        .gold-border {
+            border-color: rgba(197, 179, 88, 0.2);
+        }
+        .gold-border-hover:hover {
+            border-color: rgba(197, 179, 88, 0.8);
+        }
+        .gold-text-gradient {
+            background: linear-gradient(135deg, #f5e6a5 0%, #c5b358 50%, #9d8a35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Reveal animation styles */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c5b358;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-gold selection:text-charcoal-dark">
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b border-white/5 backdrop-blur-md bg-charcoal-dark/70" id="main-header">
+        <div class="max-w-7xl mx-auto px-6 sm:px-12 h-24 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="text-2xl tracking-[0.25em] font-serif uppercase font-semibold text-white hover:text-gold transition-colors duration-300">
+                BELON
+            </a>
+            
+            <!-- Desktop Links -->
+            <nav class="hidden md:flex items-center space-x-12">
+                <a href="#collection" class="text-xs uppercase tracking-[0.2em] text-white/60 hover:text-gold transition-colors duration-300">Collection</a>
+                <a href="#heritage" class="text-xs uppercase tracking-[0.2em] text-white/60 hover:text-gold transition-colors duration-300">Heritage</a>
+                <a href="#craftsmanship" class="text-xs uppercase tracking-[0.2em] text-white/60 hover:text-gold transition-colors duration-300">Craftsmanship</a>
+            </nav>
+
+            <!-- CTA -->
+            <div class="hidden md:block">
+                <a href="#waitlist" class="px-6 py-3 border border-gold/40 text-gold text-xs uppercase tracking-[0.2em] hover:bg-gold hover:text-charcoal-dark transition-all duration-500 rounded-none font-medium">
+                    Join Waitlist
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button class="md:hidden text-white/80 hover:text-gold focus:outline-none" id="mobile-menu-btn" aria-label="Toggle Menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="hidden md:hidden w-full bg-charcoal-dark/95 border-b border-gold/10 backdrop-blur-lg transition-all duration-300" id="mobile-menu">
+            <div class="px-6 pt-4 pb-8 space-y-6 flex flex-col items-center">
+                <a href="#collection" class="mobile-link text-sm uppercase tracking-[0.25em] text-white/75 hover:text-gold transition-colors py-2">Collection</a>
+                <a href="#heritage" class="mobile-link text-sm uppercase tracking-[0.25em] text-white/75 hover:text-gold transition-colors py-2">Heritage</a>
+                <a href="#craftsmanship" class="mobile-link text-sm uppercase tracking-[0.25em] text-white/75 hover:text-gold transition-colors py-2">Craftsmanship</a>
+                <a href="#waitlist" class="mobile-link w-full text-center py-3 border border-gold text-gold text-xs uppercase tracking-[0.2em] hover:bg-gold hover:text-charcoal-dark transition-all duration-300">
+                    Join Waitlist
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden bg-cover bg-center" style="background-image: linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, rgba(11,11,11,0.95) 100%), url('assets/hero_watch.jpg');">
+        <!-- Overlay Layer for Elegant Contrast -->
+        <div class="absolute inset-0 bg-charcoal-dark/20 z-0"></div>
+
+        <div class="max-w-5xl mx-auto px-6 sm:px-12 text-center z-10 relative mt-8">
+            <span class="text-xs uppercase tracking-[0.4em] text-gold mb-6 block font-medium opacity-90">Independent Horology</span>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-light tracking-wide text-white mb-8 leading-tight">
+                Belon.
+            </h1>
+            
+            <p class="text-lg md:text-xl font-serif italic text-white/60 max-w-2xl mx-auto mb-12 leading-relaxed">
+                Strictly limited series of 50. Hand-finished perfection. Built for those who understand the value of resistance and pure craft.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <a href="#collection" class="w-full sm:w-auto px-8 py-4 bg-gold text-charcoal-dark text-xs uppercase tracking-[0.25em] hover:bg-gold-light hover:-translate-y-0.5 transition-all duration-300 font-semibold shadow-xl">
+                    Discover The Piece
+                </a>
+                <a href="#heritage" class="w-full sm:w-auto px-8 py-4 border border-white/20 text-white text-xs uppercase tracking-[0.25em] hover:border-gold hover:text-gold hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-sm">
+                    Our Provenance
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
+            <span class="text-[9px] uppercase tracking-[0.3em] text-white/40">Scroll</span>
+            <div class="w-[1px] h-12 bg-gradient-to-b from-white/40 to-transparent"></div>
+        </div>
+    </section>
+
+    <!-- The Timepiece (Product Showcase) -->
+    <section id="collection" class="py-32 bg-charcoal-dark relative">
+        <div class="max-w-7xl mx-auto px-6 sm:px-12">
+            <!-- Section Title -->
+            <div class="text-center mb-24 reveal">
+                <span class="text-xs uppercase tracking-[0.3em] text-gold block mb-3 font-semibold">The Core Series</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-light text-white tracking-wide">Belon L'Hérétique</h2>
+                <div class="w-16 h-[1px] bg-gold/40 mx-auto mt-6"></div>
+            </div>
+
+            <!-- Showcase Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                <!-- Interactive Watch Detail Showcase (Left / Column 7) -->
+                <div class="lg:col-span-7 relative group reveal">
+                    <div class="relative overflow-hidden aspect-[4/3] border border-white/5 bg-charcoal-light/30">
+                        <img id="main-product-img" src="assets/hero_watch.jpg" alt="Belon Watch Detail" class="w-full h-full object-cover transition-all duration-700 hover:scale-105">
+                        
+                        <!-- Decorative Frame -->
+                        <div class="absolute inset-4 border border-white/5 pointer-events-none"></div>
+                    </div>
+                </div>
+
+                <!-- Product Specifications & Narrative Tabs (Right / Column 5) -->
+                <div class="lg:col-span-5 flex flex-col justify-center reveal">
+                    <span class="text-xs uppercase tracking-[0.2em] text-gold font-medium mb-3 block">Specifications</span>
+                    <h3 class="text-3xl font-serif text-white mb-6">A Study in Pure Form</h3>
+                    
+                    <p class="text-white/60 text-sm leading-relaxed mb-8 font-light">
+                        Every dial of the Belon L'Hérétique is individually hand-lacquered in multiple stages, creating a liquid depth that cannot be replicated by industrial processes. Each caseback is hand-engraved with the ancestral crest.
+                    </p>
+
+                    <!-- Interactive Specification Hotspots/Details -->
+                    <div class="space-y-4">
+                        <!-- Spec item 1 -->
+                        <button onclick="selectSpec(0)" class="spec-btn w-full p-4 border border-gold/20 hover:border-gold/60 text-left bg-charcoal-light/10 transition-all duration-300 flex justify-between items-center group active-spec" id="spec-btn-0">
+                            <div>
+                                <h4 class="text-xs uppercase tracking-[0.2em] text-gold font-medium group-hover:text-white transition-colors">Hand-finished Lacquer</h4>
+                                <p class="text-xs text-white/50 mt-1 max-h-0 overflow-hidden transition-all duration-500 spec-desc font-light" id="spec-desc-0">Twelve layers of high-gloss charcoal lacquer, cured over 180 hours, polished by hand using diamond paste.</p>
+                            </div>
+                            <span class="text-gold text-lg transition-transform duration-300" id="spec-icon-0">−</span>
+                        </button>
+
+                        <!-- Spec item 2 -->
+                        <button onclick="selectSpec(1)" class="spec-btn w-full p-4 border border-white/5 hover:border-gold/40 text-left bg-charcoal-light/10 transition-all duration-300 flex justify-between items-center group" id="spec-btn-1">
+                            <div>
+                                <h4 class="text-xs uppercase tracking-[0.2em] text-white/60 group-hover:text-gold transition-colors font-medium">Sapphire Crystal</h4>
+                                <p class="text-xs text-white/50 mt-1 max-h-0 overflow-hidden transition-all duration-500 spec-desc font-light" id="spec-desc-1">Double-domed sapphire with multi-layer inner anti-reflective coating, framing the lacquer dial with architectural clarity.</p>
+                            </div>
+                            <span class="text-white/40 text-lg transition-transform duration-300" id="spec-icon-1">+</span>
+                        </button>
+
+                        <!-- Spec item 3 -->
+                        <button onclick="selectSpec(2)" class="spec-btn w-full p-4 border border-white/5 hover:border-gold/40 text-left bg-charcoal-light/10 transition-all duration-300 flex justify-between items-center group" id="spec-btn-2">
+                            <div>
+                                <h4 class="text-xs uppercase tracking-[0.2em] text-white/60 group-hover:text-gold transition-colors font-medium">200M Water Resistance</h4>
+                                <p class="text-xs text-white/50 mt-1 max-h-0 overflow-hidden transition-all duration-500 spec-desc font-light" id="spec-desc-2">Robust screw-down structural construction seamlessly engineered into a highly refined, slim silhouette.</p>
+                            </div>
+                            <span class="text-white/40 text-lg transition-transform duration-300" id="spec-icon-2">+</span>
+                        </button>
+                    </div>
+
+                    <div class="mt-12">
+                        <a href="#waitlist" class="inline-block px-8 py-4 bg-transparent border border-gold/40 text-gold text-xs uppercase tracking-[0.2em] hover:bg-gold hover:text-charcoal-dark hover:border-gold transition-all duration-500 font-semibold">
+                            Request Allocation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heritage & Provenance Section -->
+    <section id="heritage" class="py-32 bg-charcoal-dark border-t border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-6 sm:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <!-- Waldensian Family Crest Image (Left) -->
+                <div class="order-2 lg:order-1 flex justify-center reveal">
+                    <div class="relative p-8 border border-white/5 bg-charcoal-light/10 max-w-md w-full">
+                        <!-- Fine golden frame corner details -->
+                        <div class="absolute top-0 left-0 w-4 h-4 border-t border-l border-gold/60"></div>
+                        <div class="absolute top-0 right-0 w-4 h-4 border-t border-r border-gold/60"></div>
+                        <div class="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-gold/60"></div>
+                        <div class="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-gold/60"></div>
+                        
+                        <img src="assets/family_crest.jpg" alt="Waldensian Family Crest" class="w-full grayscale brightness-90 hover:grayscale-0 transition-all duration-700">
+                    </div>
+                </div>
+
+                <!-- Provenance Narrative (Right) -->
+                <div class="order-1 lg:order-2 space-y-8 reveal">
+                    <span class="text-xs uppercase tracking-[0.3em] text-gold font-semibold block">Provenance & Roots</span>
+                    <h2 class="text-4xl md:text-5xl font-serif text-white font-light leading-tight">The Heritage of Defiance</h2>
+                    <div class="w-12 h-[1px] bg-gold/40"></div>
+                    
+                    <p class="text-white/75 font-serif italic text-lg leading-relaxed">
+                        "Lux Lucet in Tenebris" — The light shines in the darkness.
+                    </p>
+
+                    <div class="space-y-6 text-white/60 text-sm leading-relaxed font-light">
+                        <p>
+                            Belon is named in honor of our Waldensian ancestors—independent artisans, farmers, and scholars who sought sanctuary in the rugged alpine valleys. For centuries, they stood resilient, defying the Inquisition and refusing to conform to external pressures.
+                        </p>
+                        <p>
+                            This indomitable spirit of defiance is forged into the essence of our watchmaking. We do not design for panels, nor do we run mass production lines. Every Belon watch is an act of defiance against commercialization: a return to small-scale horology where the artist’s hand is supreme.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Craftsmanship Section -->
+    <section id="craftsmanship" class="py-32 bg-charcoal-dark border-t border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-6 sm:px-12">
+            <!-- Heading -->
+            <div class="max-w-3xl mb-24 reveal">
+                <span class="text-xs uppercase tracking-[0.3em] text-gold block mb-3 font-semibold">The Atelier</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-light text-white tracking-wide">The Soul of the Maker</h2>
+                <p class="text-white/50 text-sm mt-6 font-light max-w-xl">
+                    In watchmaking, time is not just measured; it is encapsulated. Every scratch, polish, and custom component represents a heartbeat of undivided attention.
+                </p>
+            </div>
+
+            <!-- Craftsmanship Showcase Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Description Card (Left) -->
+                <div class="lg:col-span-5 space-y-8 reveal">
+                    <div class="border-l-2 border-gold/40 pl-6 space-y-4">
+                        <h3 class="text-xl uppercase tracking-[0.15em] text-white font-serif font-semibold">The Watchmaker's Bench</h3>
+                        <p class="text-white/60 text-sm leading-relaxed font-light">
+                            Traditional watchmaking is an intimate dialogue between the raw metals and the artisan. At Belon, our workbenches are sanctuaries of quiet concentration, where ancient techniques are practiced with modern precision.
+                        </p>
+                    </div>
+
+                    <div class="border-l-2 border-gold/40 pl-6 space-y-4">
+                        <h3 class="text-xl uppercase tracking-[0.15em] text-white font-serif font-semibold">The Enamel & Lacquer</h3>
+                        <p class="text-white/60 text-sm leading-relaxed font-light">
+                            Our unique lacquering process requires absolute stillness. Dust is the enemy. An single dial takes several days to finish, cure, and examine under heavy magnification. Only the flawless dials survive to be fitted in our watches.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Big Craftsmanship Image (Right) -->
+                <div class="lg:col-span-7 reveal">
+                    <div class="relative overflow-hidden aspect-[4/3] border border-white/5 bg-charcoal-light/10">
+                        <img src="assets/craftsmanship.jpg" alt="Artisan Watchmaker Bench" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
+                        <div class="absolute inset-0 bg-charcoal-dark/10"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist Section -->
+    <section id="waitlist" class="py-32 bg-charcoal-dark border-t border-gold/10 relative">
+        <div class="max-w-4xl mx-auto px-6 sm:px-12 text-center reveal">
+            <span class="text-xs uppercase tracking-[0.4em] text-gold font-semibold block mb-4">Strictly Limited Series</span>
+            <h2 class="text-4xl md:text-6xl font-serif text-white font-light tracking-wide mb-6">Join The Register</h2>
+            <div class="w-12 h-[1px] bg-gold/40 mx-auto mb-8"></div>
+            
+            <p class="text-white/60 text-sm max-w-xl mx-auto mb-12 font-light leading-relaxed">
+                Allocations for Series L'Hérétique are granted based on alignment with the brand's philosophy. Register your interest to connect with the founders and secure placement on our waitlist.
+            </p>
+
+            <!-- Join Form -->
+            <form id="waitlist-form" onsubmit="handleWaitlistSubmit(event)" class="max-w-md mx-auto space-y-6">
+                <div class="relative">
+                    <input type="text" required placeholder="Full Name" class="w-full px-4 py-4 bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-gold text-sm font-light transition-colors">
+                </div>
+                <div class="relative">
+                    <input type="email" required placeholder="Email Address" class="w-full px-4 py-4 bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-gold text-sm font-light transition-colors">
+                </div>
+                <div class="relative">
+                    <textarea placeholder="Tell us why Horological Independence matters to you..." rows="4" class="w-full px-4 py-4 bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-gold text-sm font-light transition-colors resize-none"></textarea>
+                </div>
+                <button type="submit" class="w-full py-4 bg-gold text-charcoal-dark uppercase tracking-[0.25em] text-xs font-semibold hover:bg-gold-light hover:shadow-lg hover:shadow-gold/10 transition-all duration-300 font-bold">
+                    Apply for Allocation
+                </button>
+            </form>
+
+            <!-- Success Message Toast (Hidden by default) -->
+            <div id="waitlist-success" class="hidden max-w-md mx-auto p-8 border border-gold/40 bg-charcoal-light/40 backdrop-blur-md mt-6 transition-all duration-500">
+                <span class="text-gold text-lg mb-2 block">✓ Register Application Received</span>
+                <p class="text-white/60 text-xs font-light leading-relaxed">
+                    Thank you. Your request for allocation is now registered. We will reach out to you personally within 48 hours to schedule a consultation.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 bg-charcoal-dark border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 sm:px-12 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-center md:text-left">
+                <a href="#" class="text-xl tracking-[0.25em] font-serif uppercase font-semibold text-white">
+                    BELON
+                </a>
+                <p class="text-[10px] text-white/40 tracking-wider mt-2 uppercase">
+                    © 2026 Belon Watches. All rights reserved.
+                </p>
+            </div>
+
+            <!-- Links & Contact -->
+            <div class="flex flex-col sm:flex-row gap-8 items-center text-center">
+                <a href="mailto:concierge@belon-watches.com" class="text-xs uppercase tracking-[0.15em] text-white/50 hover:text-gold transition-colors font-light">concierge@belon-watches.com</a>
+                <span class="text-white/20 hidden sm:inline">|</span>
+                <a href="#" class="text-xs uppercase tracking-[0.15em] text-white/50 hover:text-gold transition-colors font-light">Atelier Geneva</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Actions & Interactive Logic -->
+    <script>
+        // Header styling scroll change
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.remove('h-24');
+                header.classList.add('h-20', 'bg-charcoal-dark/90');
+            } else {
+                header.classList.remove('h-20', 'bg-charcoal-dark/90');
+                header.classList.add('h-24');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isOpen = !mobileMenu.classList.contains('hidden');
+            if (isOpen) {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            } else {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            }
+        });
+
+        // Close mobile menu on links click
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            });
+        });
+
+        // Interactive Specs Toggle/Accordion
+        const specDescriptions = [
+            "Twelve layers of high-gloss charcoal lacquer, cured over 180 hours, polished by hand using diamond paste.",
+            "Double-domed sapphire with multi-layer inner anti-reflective coating, framing the lacquer dial with architectural clarity.",
+            "Robust screw-down structural construction seamlessly engineered into a highly refined, slim silhouette."
+        ];
+
+        function selectSpec(index) {
+            // Reset all spec items
+            document.querySelectorAll('.spec-btn').forEach((btn, idx) => {
+                const title = btn.querySelector('h4');
+                const desc = btn.querySelector('.spec-desc');
+                const icon = btn.querySelector('span');
+
+                if (idx === index) {
+                    btn.classList.add('border-gold/60', 'active-spec');
+                    btn.classList.remove('border-white/5');
+                    title.classList.add('text-gold');
+                    title.classList.remove('text-white/60');
+                    desc.style.maxHeight = '100px';
+                    icon.textContent = '−';
+                    icon.classList.add('text-gold');
+                    icon.classList.remove('text-white/40');
+                } else {
+                    btn.classList.remove('border-gold/60', 'active-spec');
+                    btn.classList.add('border-white/5');
+                    title.classList.remove('text-gold');
+                    title.classList.add('text-white/60');
+                    desc.style.maxHeight = '0';
+                    icon.textContent = '+';
+                    icon.classList.remove('text-gold');
+                    icon.classList.add('text-white/40');
+                }
+            });
+        }
+
+        // Initialize Spec Accordion
+        selectSpec(0);
+
+        // Form Submit Handler
+        function handleWaitlistSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('waitlist-form');
+            const success = document.getElementById('waitlist-success');
+            
+            form.classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                form.classList.add('hidden');
+                success.classList.remove('hidden');
+                success.classList.add('opacity-100');
+            }, 300);
+        }
+
+        // Reveal sections on scroll using Intersection Observer
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    </script>
+</body>
+</html>
